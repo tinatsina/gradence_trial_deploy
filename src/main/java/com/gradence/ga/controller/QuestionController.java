@@ -63,7 +63,7 @@ public class QuestionController {
     }
 
     // PUT update question
-    @PutMapping("/{id}")
+    @PutMapping("/{question_id}")
     public ResponseEntity<?> updateQuestion(@PathVariable Long id, @RequestBody Question updated) {
         return questionRepo.findById(id).map(question -> {
             question.setQuestionTopic(updated.getQuestionTopic());
@@ -85,7 +85,7 @@ public class QuestionController {
     }
 
     // DELETE question
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{question_id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
         return questionRepo.findById(id).map(question -> {
             questionRepo.delete(question);

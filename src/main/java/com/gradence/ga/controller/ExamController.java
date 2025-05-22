@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/exam")
+@RequestMapping("/exam")
 @RequiredArgsConstructor
 public class ExamController {
 
