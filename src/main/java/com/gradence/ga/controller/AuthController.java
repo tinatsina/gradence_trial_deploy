@@ -41,6 +41,16 @@ public class AuthController {
         );
 
         String token = jwtUtils.generateToken(authRequest.getUsername());
-        return ResponseEntity.ok(Collections.singletonMap("token", token));
+        Optional<User> userOpt = userRepo.findByUsername(authRequest.getUsername());
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+        User user = userOpt.get();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("userId", user.getId());
+
+        return ResponseEntity.ok(response);
     }
 }

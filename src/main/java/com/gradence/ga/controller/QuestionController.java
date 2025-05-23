@@ -84,6 +84,26 @@ public class QuestionController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    // PATCH update question (partial update)
+    @PatchMapping("/{question_id}")
+    public ResponseEntity<?> patchQuestion(@PathVariable Long question_id, @RequestBody Question patch) {
+        return questionRepo.findById(question_id).map(question -> {
+            if (patch.getQuestionTopic() != null) question.setQuestionTopic(patch.getQuestionTopic());
+            if (patch.getQuestionText() != null) question.setQuestionText(patch.getQuestionText());
+            if (patch.getQuestionDifficulty() != null) question.setQuestionDifficulty(patch.getQuestionDifficulty());
+            if (patch.getQuestionOptionA() != null) question.setQuestionOptionA(patch.getQuestionOptionA());
+            if (patch.getQuestionOptionB() != null) question.setQuestionOptionB(patch.getQuestionOptionB());
+            if (patch.getQuestionOptionC() != null) question.setQuestionOptionC(patch.getQuestionOptionC());
+            if (patch.getQuestionOptionD() != null) question.setQuestionOptionD(patch.getQuestionOptionD());
+            if (patch.getQuestionCorrectAnswer() != null) question.setQuestionCorrectAnswer(patch.getQuestionCorrectAnswer());
+            if (patch.getQuestionPoints() != null) question.setQuestionPoints(patch.getQuestionPoints());
+            if (patch.getExam() != null && patch.getExam().getId() != null) {
+                examRepo.findById(patch.getExam().getId()).ifPresent(question::setExam);
+            }
+            return ResponseEntity.ok(questionRepo.save(question));
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
     // DELETE question
     @DeleteMapping("/{question_id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
