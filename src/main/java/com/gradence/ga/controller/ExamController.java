@@ -39,8 +39,8 @@ public class ExamController {
 
     // ✅ Get Exam by ID
     @GetMapping("/{exam_id}")
-    public ResponseEntity<?> getExamById(@PathVariable Long id) {
-        return examRepo.findById(id)
+    public ResponseEntity<?> getExamById(@PathVariable Long exam_id) {
+        return examRepo.findById(exam_id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
