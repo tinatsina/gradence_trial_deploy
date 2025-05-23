@@ -27,8 +27,8 @@ public class QuestionController {
 
     // GET question by ID
     @GetMapping("/{question_id}")
-    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
-        return questionRepo.findById(id)
+    public ResponseEntity<Question> getQuestionById(@PathVariable Long question_id) {
+        return questionRepo.findById(question_id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

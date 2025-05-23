@@ -1,5 +1,6 @@
 package com.gradence.ga.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -54,6 +55,7 @@ public class Question {
 
     @JsonProperty("exam_id")
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "exam_id", nullable = false)
     @JsonIgnoreProperties("questions")
     private Exam exam;
