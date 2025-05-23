@@ -5,7 +5,7 @@ import com.gradence.ga.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/user")
 public class UserController {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
-
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/exam")
 @RequiredArgsConstructor

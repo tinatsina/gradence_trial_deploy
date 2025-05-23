@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/questions")
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ public class QuestionController {
     }
 
     // GET question by ID
-    @GetMapping("/{id}")
+    @GetMapping("/{question_id}")
     public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
         return questionRepo.findById(id)
                 .map(ResponseEntity::ok)
